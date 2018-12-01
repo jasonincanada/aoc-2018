@@ -8,7 +8,8 @@ module AdventOfCode
   ) where
 
 getDayInput :: Int -> IO [String]
-getDayInput day = do
-  contents <- readFile ("inputs/" ++ show day ++ ".txt")
-  return $ lines contents
+getDayInput day = lines <$> readFile (fileName day)
+
+fileName :: Int -> String
+fileName day = "inputs/" ++ show day ++ ".txt"
 
