@@ -9,7 +9,10 @@ module Day01
 
 import Data.IntSet (member, insert, empty)
 
-preprocess :: [String] -> [Int]
+type Frequency  = Int
+type FreqChange = Int
+
+preprocess :: [String] -> [FreqChange]
 preprocess = map (read . trimPlus)
   where trimPlus = dropWhile (=='+')
 
@@ -17,15 +20,12 @@ preprocess = map (read . trimPlus)
 -- Part 1 --
 ------------
 
-part1 :: [Int] -> Int
+part1 :: [FreqChange] -> Frequency
 part1 = sum
 
 ------------
 -- Part 2 --
 ------------
-
-type Frequency  = Int
-type FreqChange = Int
 
 -- Find the first frequency we arrive at for the second time
 part2 :: [FreqChange] -> Frequency
