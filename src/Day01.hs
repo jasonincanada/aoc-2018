@@ -11,8 +11,7 @@ import Data.IntSet (member, insert, empty)
 
 preprocess :: [String] -> [Int]
 preprocess = map (read . trimPlus)
-  where trimPlus ('+':xs) = xs
-        trimPlus xs       = xs
+  where trimPlus = dropWhile (=='+')
 
 ------------
 -- Part 1 --
