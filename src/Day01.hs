@@ -1,3 +1,6 @@
+-- Chronal Calibration
+-- https://adventofcode.com/2018/day/1
+
 module Day01
   ( preprocess,
     part1,
