@@ -75,14 +75,14 @@ part1 rs = let slept = analyze rs
                          $ IntMap.fromListWith (+)
                          $ map ((,1) . fst) -- convert the minute number to 1 minute the duration
                          $ slept
-               mins  = reverse
-                         $ sortBy (comparing snd)
+               min   = fst
+                         $ maximumBy (comparing snd)
                          $ IntMap.toList
                          $ IntMap.fromListWith (+)
                          $ map ((,1) . snd)
                          $ filter ((==guard) . fst)
                          $ slept
-           in  (guard, fst $ head mins)
+           in  (guard, min)
 
 -- Analyze a (sorted) list of records to determine which minutes
 -- of the night were slept through by which guards
