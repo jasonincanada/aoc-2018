@@ -35,23 +35,12 @@ parseRecord :: Parser Record
 parseRecord = begins <|> fallsAsleep <|> wakesUp
 
 -- [1518-11-01 00:00] Guard #10 begins shift
-begins :: Parser Record
-begins = do
-  ts    <- timestamp; string " Guard #"
-  badge <- number;    string " begins shift"
-  return $ BeginShift ts badge
-
 -- [1518-11-01 00:05] falls asleep
-fallsAsleep :: Parser Record
-fallsAsleep = do
-  ts    <- timestamp; string " falls asleep"
-  return $ FallsAsleep ts
-
 -- [1518-11-01 00:25] wakes up
-wakesUp :: Parser Record
-wakesUp = do
-  ts    <- timestamp; string " wakes up"
-  return $ WakesUp ts
+begins, fallsAsleep, wakesUp :: Parser Record
+begins      = BeginShift  <$> timestamp <* string " Guard #" <*> number <* string " begins shift"
+fallsAsleep = FallsAsleep <$> timestamp <* string " falls asleep"
+wakesUp     = WakesUp     <$> timestamp <* string " wakes up"
 
 timestamp :: Parser Timestamp
 timestamp = do
