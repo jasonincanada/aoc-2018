@@ -6,9 +6,9 @@
 module Main where
 
 import AdventOfCode (getDayInput)
-import Day04 (preprocess, part1, part2)
+import Day05 (preprocess, part1, part2)
 
-day = 4
+day = 5
 
 main :: IO ()
 main = do
