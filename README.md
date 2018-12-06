@@ -3,6 +3,7 @@ My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell
 
 Day | Title | Development Notes
 --- | --- | ---
+6 | [Chronal Coordinates](./src/Day06.hs) | Voronoi areas with Manhattan distance for metric (part 2 tbd)
 5 | [Alchemical Reduction](./src/Day05.hs) | Zap a polymer down to size
 4 | [Repose Record](./src/Day04.hs) | Analyze records of guards falling asleep
 3 | [No Matter How You Slice It](./src/Day03.hs) | Find overlapping and non-overlapping claims (squares) on a grid
