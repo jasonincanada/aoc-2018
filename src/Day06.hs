@@ -9,15 +9,17 @@ module Day06
     part2
   ) where
 
+import Control.Monad.Reader
 import Data.Char  (isDigit)
 import Data.List  (delete, sortBy, (\\))
 import Data.Maybe (catMaybes)
 import Data.Ord   (comparing)
 import qualified Data.Map as Map
 
-type Coord = (Int, Int)
-type Point = (Int, Int)
-type Area  = Int
+type Coord  = (Int, Int)
+type Point  = (Int, Int)
+type Points = [Point]
+type Area   = Int
 
 preprocess :: [String] -> [Point]
 preprocess = map tuplify
