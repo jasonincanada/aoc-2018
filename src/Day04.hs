@@ -73,7 +73,7 @@ part1 rs = let slept = analyze rs
                          $ maximumBy (comparing snd) 
                          $ IntMap.toList 
                          $ IntMap.fromListWith (+)
-                         $ map ((,1) . fst) -- convert the minute number to 1 minute the duration
+                         $ map (fmap (const 1)) -- convert the minute number to 1 minute the duration
                          $ slept
                min   = fst
                          $ maximumBy (comparing snd)
