@@ -66,7 +66,7 @@ part1 (people, marbles) = take 5
 ------------
 
 part2 :: (Int, Int) -> [(Player, Int)]
-part2 (people, marbles) = part1 (people, 100 * marbles)
+part2 = part1 . fmap (*100)
 
 {-
   jason@ubuntu16:~/aoc-2018$ time stack exec aoc2018-exe
