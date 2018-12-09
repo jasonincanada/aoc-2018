@@ -9,10 +9,9 @@ module Day06
     part2
   ) where
 
-import Control.Monad.Reader
 import Data.Char  (isDigit)
 import Data.List  (delete, sortBy, (\\))
-import Data.Maybe (catMaybes)
+import Data.Maybe (mapMaybe)
 import Data.Ord   (comparing)
 import qualified Data.Map as Map
 
@@ -24,7 +23,7 @@ type Area   = Int
 preprocess :: [String] -> [Point]
 preprocess = map tuplify
   where tuplify s = let x = read $ takeWhile isDigit s
-                        y = read $ tail $ dropWhile (/=',') $ s
+                        y = read $ tail $ dropWhile (/=',') s
                     in  (x, y)
 
 ------------
@@ -34,15 +33,12 @@ preprocess = map tuplify
 part1 :: [Point] -> (Point, Area)
 part1 ps = fmap (+1)
              $ head
-             $ reverse
-             $ sortBy (comparing snd)
+             $ sortBy (flip (comparing snd))
              $ Map.toList
              $ Map.fromListWith (+)
              $ map (,1)
              $ filter (not . flip elem (infinities ps))
-             $ catMaybes
-             $ map (closest ps)
-             $ uncharted ps
+             $ mapMaybe (closest ps) (uncharted ps)
 
 -- List the coordinates within our bounding box
 uncharted :: [Point] -> [Coord]
@@ -60,7 +56,7 @@ uncharted ps = let xs     = map fst ps
 -- is considered to have infinite area
 infinities :: [Point] -> [Point]
 infinities ps = filter hasInfiniteArea ps
-  where hasInfiniteArea point = point `elem` (catMaybes $ map (closest ps) (probes point))
+  where hasInfiniteArea point = point `elem` (mapMaybe (closest ps) (probes point))
         probes (x, y)         = [ (x+dx, y+dy) | (dx, dy) <- [(0, probeLength),
                                                               (0,-probeLength),
                                                               ( probeLength, 0),

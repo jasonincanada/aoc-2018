@@ -111,8 +111,7 @@ analyze rs = go 0 rs
 -- Which guard is most frequently asleep on the same minute, and which minute?
 part2 :: [Record] -> (BadgeID, Minute)
 part2 rs = fst $ head
-               $ reverse
-               $ sortBy (comparing snd)
+               $ sortBy (flip (comparing snd))
                $ Map.toList
                $ Map.fromListWith (+)
                $ map (,1)

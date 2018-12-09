@@ -37,7 +37,7 @@ doStep :: (Graph, Trail) -> (Graph, Trail)
 doStep (g, t) = let as = availables g
                 in if null as
                    then (g, t)
-                   else let h = head $ sort as
+                   else let h = minimum as
                         in  (remove h g, h : t) 
 
 remove :: Step -> Graph -> Graph
@@ -48,7 +48,7 @@ remove s g = removeEmpties $ Map.map (delete s) g
 
 -- Determine which steps in the graph are available to be processed next
 availables :: Graph -> [Step]
-availables g = (nub $ concat $ Map.elems g) \\ Map.keys g
+availables g = nub (concat $ Map.elems g) \\ Map.keys g
 
 -- Build a map keyed on step with values all the steps that link to it
 toMap :: [Link] -> Map.Map Step [Step]

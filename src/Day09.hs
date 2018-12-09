@@ -28,8 +28,7 @@ type Round  = Int
 
 part1 :: (Int, Int) -> [(Player, Int)]
 part1 (people, marbles) = take 5
-                            $ reverse
-                            $ sortBy (comparing snd)
+                            $ sortBy (flip (comparing snd))
                             $ IntMap.toList
                             $ IntMap.fromListWith (+)
                             $ go 1 1 start
@@ -51,12 +50,12 @@ part1 (people, marbles) = take 5
 
         -- Get the value of the marble 7 to the left
         sevenAgo :: PL.PointedList Int -> Int
-        sevenAgo = get . head . drop 7 . iterate previous
+        sevenAgo = get . (!! 7) . iterate previous
           where get (PL.PointedList _ f _) = f
 
         -- Drop the marble 7 to the left, retain the new focus there
         prune :: PL.PointedList Int -> PL.PointedList Int
-        prune = delete . head . drop 7 . iterate previous
+        prune = delete . (!! 7) . iterate previous
           where delete l = let Just list = PL.delete l
                            in  list
 
