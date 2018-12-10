@@ -51,9 +51,9 @@ step = map advance
 
 -- Return the last item seen before a function on list elements increases for the first time
 beforeIncrease :: Ord b => (a -> b) -> [a] -> a
-beforeIncrease f list@(x:y:_)
-  | f y > f x = head list
-  | otherwise = beforeIncrease f $ tail list
+beforeIncrease f (x:y:rest)
+  | f y > f x = x
+  | otherwise = beforeIncrease f (y:rest)
 
 -- Get the bounding box for a list of positions
 box :: [Position] -> BoundingBox
