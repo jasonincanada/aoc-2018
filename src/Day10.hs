@@ -35,10 +35,8 @@ star = do
 
 part1 :: [Star] -> [String]
 part1 = draw
-          . snd
-          . fmap positionsOnly
-          . beforeIncrease (size . box . map fst . snd)
-          . zip [0..]
+          . positionsOnly
+          . beforeIncrease (size . box . positionsOnly)
           . iterate step 
 
   where positionsOnly :: [Star] -> [Position]
