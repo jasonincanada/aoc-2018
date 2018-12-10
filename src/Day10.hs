@@ -111,3 +111,13 @@ part2 = fst
           . zip [0..]
           . iterate step 
 
+
+{-
+  jason@ubuntu16:~/aoc-2018$ time stack exec aoc2018-exe
+  ...
+
+  real    0m4.347s
+  user    0m4.240s
+  sys     0m0.088s
+-}
+
