@@ -3,6 +3,7 @@ My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell
 
 Day | Title | Development Notes
 --- | --- | ---
+10 | [The Stars Align](./src/Day10.hs) | Catch an ASCII message visible for a moment in time
 9 | [Marble Mania](./src/Day09.hs) | Marble counting with a circular list
 8 | [Memory Maneuver](./src/Day08.hs) | Tree parsing and folding
 7 | [The Sum of Its Parts](./src/Day07.hs) | Dependency chains (part 2 WIP)

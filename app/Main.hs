@@ -6,14 +6,14 @@
 module Main where
 
 import AdventOfCode (getDayInput)
-import Day09 (preprocess, part1, part2)
+import Day10 (preprocess, part1, part2)
 
-day = 9
+day = 10
 
 main :: IO ()
 main = do
   fileLines <- getDayInput day
   let pre = preprocess fileLines
-  putStrLn $ show (part1 pre)
+  mapM_ putStrLn $ part1 pre
   putStrLn $ show (part2 pre)
 
