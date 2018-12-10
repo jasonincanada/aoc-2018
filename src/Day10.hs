@@ -58,10 +58,12 @@ beforeIncrease f list@(x:y:_)
 -- Get the bounding box for a list of positions
 box :: [Position] -> BoundingBox
 box ls = ((x1, y1), (x2, y2))
-  where x1 = minimum $ map fst ls
-        y1 = minimum $ map snd ls
-        x2 = maximum $ map fst ls
-        y2 = maximum $ map snd ls
+  where xs = map fst ls
+        ys = map snd ls
+        x1 = minimum xs
+        y1 = minimum ys
+        x2 = maximum xs
+        y2 = maximum ys
 
 size :: BoundingBox -> Int
 size ((x1, y1), (x2, y2)) = (abs (x1-x2)+1) * (abs (y1-y2)+1)
