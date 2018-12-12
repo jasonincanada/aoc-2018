@@ -24,6 +24,7 @@ module Day10
     part2
   ) where
 
+import Data.Bool (bool)
 import Control.Applicative (many)
 import NanoParsec
 
@@ -70,9 +71,7 @@ draw :: [Position] -> [String]
 draw ps = [[ letter (x,y) | x <- [0..maxX]] 
                           | y <- [0..maxY]]
 
-  where letter p = if p `elem` toOrigin
-                   then 'X'
-                   else '.'
+  where letter p = bool 'X' '.' (p `elem` toOrigin)
         toOrigin = map (`sub` bounds) ps
         bounds   = box ps
         maxX     = maximum $ map fst toOrigin
