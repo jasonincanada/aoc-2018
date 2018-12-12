@@ -1,6 +1,8 @@
 ## Advent of Code 2018
 My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell
 
+**Day 12**: Currently studying comonads and memoization to efficiently answer yesterday and today's (and probably later's!) questions
+
 Day | Title | Development Notes
 --- | --- | ---
 10 | [The Stars Align](./src/Day10.hs) | Catch an ASCII message visible for a moment in time
