@@ -78,7 +78,7 @@ tab opt (Store f s) = Store (opt f) s
 -- Our initial store is focused at 0 and is a function that returns
 -- true on i if there is a plant in pot i
 start :: Garden -> Store Int Bool
-start garden = Store (\i -> i `elem` garden) 0
+start garden = Store (`elem` garden) 0
 
 experiment :: Functor f => (s -> f s) -> Store s a -> f a
 experiment k (Store sa s) = sa <$> k s
