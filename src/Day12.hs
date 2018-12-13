@@ -36,12 +36,13 @@ preprocess ss = (initial, notes)
   where initial  = indicesOf '#' $ drop 15 (ss !! 0)
         notes    = map (run parseNote) (drop 2 ss)
 
+-- #..#. => .
 parseNote :: Parser Note
 parseNote = do
   pots <- replicateM 5 (oneOf ".#")
   string " => "
   pot' <- oneOf ".#"
-  return (map (subtract 2) $ indicesOf '#' pots, pot' == '#')
+  return (subtract 2 <$> indicesOf '#' pots, pot' == '#')
 
 indicesOf :: Eq a => a -> [a] -> [Int]
 indicesOf a = map fst
