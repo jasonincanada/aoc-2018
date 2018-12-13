@@ -71,7 +71,7 @@ rule notes (Store ib i) = maybe (ib i) snd (find f notes)
                             ib (i+2) == (  2  `elem` note) ]
 
 -- Set up memoization to avoid repeated calculations
-tab :: Memo Int -> Store Int Bool -> Store Int Bool
+tab :: Num s => Memo s -> Store s a -> Store s a
 tab opt (Store f s) = Store (opt f) s
 
 -- Our initial store is focused at 0 and is a function that returns
@@ -82,7 +82,7 @@ start garden = Store (\i -> i `elem` garden) 0
 experiment :: Functor f => (s -> f s) -> Store s a -> f a
 experiment k (Store sa s) = sa <$> k s
 
-window :: Int -> Int -> Store Int Bool -> [Bool]
+window :: (Enum s, Num s) => s -> s -> Store s a -> [a]
 window l h = experiment $ \s -> [s-l..s+h]
 
 -- Get the list of pot numbers that have plants in them
@@ -92,7 +92,7 @@ potteds l h s = map fst
                   $ zip [(-l)..]
                   $ window l h s
 
-loop :: (Store Int Bool -> Bool) -> Store Int Bool -> [Store Int Bool]
+loop :: Integral s => (Store s a -> a) -> Store s a -> [Store s a]
 loop f = iterate (extend f . tab integral)
 
 part1 :: (Garden, [Note]) -> [Int]
