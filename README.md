@@ -1,7 +1,7 @@
 ## Advent of Code 2018
 My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell
 
-**Day 12**: Currently studying comonads and memoization to efficiently answer yesterday and today's (and probably later's!) questions
+**Day 15**: I'm concentrating on Day 15 at the moment.  I lost interest in day 13 because of how similar it is to a puzzle from last year.  I'll probably skip 14 altogether since it's just tedious array manipulation with no interesting conceptual challenge
 
 Day | Title | Development Notes
 --- | --- | ---
