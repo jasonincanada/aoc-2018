@@ -21,6 +21,10 @@ description:         Please see the README on GitHub at <https://github.com/jaso
 
 dependencies:
 - base >= 4.7 && < 5
+- comonad
+- containers
+- data-memocombinators
+- pointedlist
 
 library:
   source-dirs: src
