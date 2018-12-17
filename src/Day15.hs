@@ -4,11 +4,11 @@
 
    How about this large plate of spagetti
 
-   This code works but needs a lot of re-factoring. It could benefit from
-   lenses, and a proper separation of the state machine into at least two
-   separate components, events/logic that drive it and a state reducer.
-   This was painful to write but it's a good program to consider for
-   making improvements.
+   This code works but needs a lot of re-factoring. It could probably benefit from lenses,
+   and a proper separation of the state machine into at least two separate components: 
+   events/logic that drives it, and a state reducer.
+
+   This was painful to write but it's a good program for meditating on improvements
 -}
 
 {-# Language TupleSections #-}
