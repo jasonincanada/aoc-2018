@@ -9,6 +9,8 @@
    events/logic that drives it, and a state reducer.
 
    This was painful to write but it's a good program for meditating on improvements
+
+   Pseudocode for the state machine is listed at the bottom of the file
 -}
 
 {-# Language TupleSections #-}
@@ -333,4 +335,43 @@ attackPower (Unit Elf    _ _) game = elfAttackPower game
 
 part2 :: Game -> Int
 part2 game = 0
+
+{-  ---- State machine pseudo-code ----
+
+    STARTROUND
+      Snapshot of units
+      NEXTPLAYER
+
+    NEXTUNIT
+      If no reachable units ENDROUND
+      unit <- peel
+      If unit not alive NEXTUNIT else TURN
+      
+    TURN
+      If no targets, HALT
+      If not in range SCAN else ATTACK
+
+    SCAN
+      If no targets anywhere HALT else MOVE
+      
+    MOVE
+      Move one step toward target
+      ATTACK
+        
+    ATTACK
+      If not in range, ENDTURN
+      else Perform attack
+         If enemy now dead, remove it   
+         ENDTURN
+      
+    ENDTURN
+      NEXTPLAYER
+        
+    ENDROUND
+      RoundsPlayed++
+      STARTROUND
+          
+    HALT
+
+-}
 
