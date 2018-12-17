@@ -340,7 +340,7 @@ part2 game = 0
 
     STARTROUND
       Snapshot of units
-      NEXTPLAYER
+      NEXTUNIT
 
     NEXTUNIT
       If no reachable units ENDROUND
