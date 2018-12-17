@@ -343,7 +343,7 @@ part2 game = 0
       NEXTUNIT
 
     NEXTUNIT
-      If no reachable units ENDROUND
+      If no more units to process ENDROUND
       unit <- peel
       If unit not alive NEXTUNIT else TURN
       
