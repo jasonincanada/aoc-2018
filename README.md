@@ -5,6 +5,9 @@ My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell
 
 Day | Title | Development Notes
 --- | --- | ---
+15 | [Beverage Bandits](./src/Day15.hs) | Solve an ASCII game using a state machine
+14 | Chocolate Charts | *(in progress)*
+13 | Mine Cart Madness | *(in progress)*
 12 | [Subterranean Sustainability](./src/Day12.hs) | 1-D cellular automata, comonadically
 11 | Chronal Charge | *(in progress)*
 10 | [The Stars Align](./src/Day10.hs) | Catch an ASCII message visible for a moment in time

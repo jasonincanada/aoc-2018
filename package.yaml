@@ -24,6 +24,8 @@ dependencies:
 - comonad
 - containers
 - data-memocombinators
+- hashmap
+- ordered-containers >= 0.1.1
 - pointedlist
 
 library:
