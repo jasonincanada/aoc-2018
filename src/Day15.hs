@@ -365,7 +365,7 @@ part2 game = 0
          ENDTURN
       
     ENDTURN
-      NEXTPLAYER
+      NEXTUNIT
         
     ENDROUND
       RoundsPlayed++
