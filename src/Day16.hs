@@ -9,6 +9,8 @@ module Day16
   ) where
 
 import Control.Applicative (many)
+import Data.Bits           ((.&.), (.|.))
+import Data.Bool           (bool)
 import NanoParsec
 
 type Registers   = [Int]
@@ -61,8 +63,77 @@ nl = char '\n'
 -- Part 1 --
 ------------
 
-part1 :: Input -> Input
-part1 = id
+-- Set the value of register i.  This isn't an efficient way to update a list element in Haskell
+-- but it saves on importing Data.Sequence and doing sequence/list conversions everywhere
+set :: Registers -> Int -> Int -> Registers
+set regs i val = go regs 0
+  where go []     _   = []
+        go (r:rs) n
+          | n == i    = val : rs
+          | otherwise = r   : go rs (n+1)
+
+-- Carry out function f on two values, one or both of which may be read from a register,
+-- and store the result in the register C from the instruction
+regOp, valOp, lavOp :: (Int -> Int -> Int) -> Registers -> Instruction -> Registers
+regOp f regs (_, a, b, c) = set regs c (f (regs !! a) (regs !! b))
+valOp f regs (_, a, b, c) = set regs c (f (regs !! a)  b         )
+lavOp f regs (_, a, b, c) = set regs c (f  a          (regs !! b))
+
+
+type Operation = (Registers -> Instruction -> Registers)
+
+-- Addition
+addr, addi :: Operation
+addr = regOp (+)
+addi = valOp (+)
+
+-- Multiplication
+mulr = regOp (*)
+muli = valOp (*)
+
+-- Bitwise AND
+banr = regOp (.&.)
+bani = valOp (.&.)
+
+-- Bitwise OR
+borr = regOp (.|.)
+bori = valOp (.|.)
+
+-- Assignment
+setr = regOp const
+seti regs (_, a, _, c) = set regs c a
+
+-- Greater-than testing
+gtrr = regOp (tester (>))
+gtri = valOp (tester (>))
+gtir = lavOp (tester (>))
+
+-- Equality testing
+eqrr = regOp (tester (==))
+eqri = valOp (tester (==))
+eqir = lavOp (tester (==))
+
+tester :: (a -> a -> Bool) -> a -> a -> Int
+tester f a b = bool 0 1 $ f a b
+
+-- Collect all our operations
+operations :: [Operation]
+operations =  [addr, addi, mulr, muli,
+               banr, bani, borr, bori,
+               setr, seti,
+               gtrr, gtri, gtir,
+               eqrr, eqri, eqir]
+
+
+{- Ignoring the opcode numbers, how many samples in your puzzle input behave like three
+   or more operations? -}
+
+part1 :: Input -> Int
+part1 (samples, _) = length (filter (>=3) matches)
+  where matches = [ foldr ((+) . testWith sample) 0 operations | sample <- samples ]
+
+        testWith :: Sample -> Operation -> Int
+        testWith (before, ins, after) op = bool 0 1 (before `op` ins == after)
 
 
 ------------
