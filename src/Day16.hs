@@ -37,8 +37,8 @@ instruction = do
   opcode <- number; space
   a      <- number; space
   b      <- number; space
-  output <- number
-  return (opcode, a, b, output)
+  c      <- number
+  return (opcode, a, b, c)
 
 -- Before: [0, 1, 2, 1]
 -- 12 3 2 2
