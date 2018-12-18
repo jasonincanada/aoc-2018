@@ -1,10 +1,9 @@
 ## Advent of Code 2018
 My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell
 
-**Day 15**: I'm concentrating on Day 15 at the moment.  I lost interest in day 13 because of how similar it is to a puzzle from last year.  I'll probably skip 14 altogether since it's just tedious array manipulation with no interesting conceptual challenge
-
 Day | Title | Development Notes
 --- | --- | ---
+16 | [Chronal Classification](./src/Day16.hs) | Preprocessing step done
 15 | [Beverage Bandits](./src/Day15.hs) | Solve an ASCII game using a state machine
 14 | Chocolate Charts | *(in progress)*
 13 | Mine Cart Madness | *(in progress)*
