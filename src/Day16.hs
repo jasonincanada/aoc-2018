@@ -130,7 +130,7 @@ operations =  [addr, addi, mulr, muli,
 
 part1 :: Input -> Int
 part1 (samples, _) = length (filter (>=3) matches)
-  where matches = [ foldr ((+) . testWith sample) 0 operations | sample <- samples ]
+  where matches = [ sum $ map (testWith sample) operations | sample <- samples ]
 
         testWith :: Sample -> Operation -> Int
         testWith (before, ins, after) op = bool 0 1 (before `op` ins == after)
