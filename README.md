@@ -1,9 +1,11 @@
 ## Advent of Code 2018
-My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell
+My solutions for [Advent of Code 2018](http://adventofcode.com/2018) in Haskell.
+
+There's an r/adventofcode subreddit with really great discussions and other participants' code submissions: https://old.reddit.com/r/adventofcode/
 
 Day | Title | Development Notes
 --- | --- | ---
-16 | [Chronal Classification](./src/Day16.hs) | Preprocessing step done
+16 | [Chronal Classification](./src/Day16.hs) | Part 1 done
 15 | [Beverage Bandits](./src/Day15.hs) | Solve an ASCII game using a state machine
 14 | Chocolate Charts | *(in progress)*
 13 | Mine Cart Madness | *(in progress)*
