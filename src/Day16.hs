@@ -101,7 +101,7 @@ bori = valOp (.|.)
 
 -- Assignment
 setr = regOp const
-seti regs (_, a, _, c) = set regs c a
+seti = lavOp const
 
 -- Greater-than testing
 gtrr = regOp (tester (>))
