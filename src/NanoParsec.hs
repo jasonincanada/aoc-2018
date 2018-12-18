@@ -93,6 +93,10 @@ chainl1 p op = do {a <- p; rest a}
                      rest (f a b))
                  <|> return a
 
+-- Copied from https://hackage.haskell.org/package/parser-combinators-0.2.0/docs/src/Control-Applicative-Combinators.html#sepBy
+sepBy :: Alternative m => m a -> m sep -> m [a]
+sepBy p sep = (:) <$> p <*> many (sep *> p)
+
 run :: Parser a -> String -> a
 run m s =
   case parse m s of
