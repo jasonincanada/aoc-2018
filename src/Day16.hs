@@ -33,12 +33,10 @@ registers = char '[' *> (number <-> string ", ") <* char ']'
 
 -- 7 2 0 0
 instruction :: Parser (Int, Int, Int, Int)
-instruction = do
-  opcode <- number; space
-  a      <- number; space
-  b      <- number; space
-  c      <- number
-  return (opcode, a, b, c)
+instruction = (,,,) <$> (number <* space)
+                    <*> (number <* space)
+                    <*> (number <* space)
+                    <*> number
 
 -- Before: [0, 1, 2, 1]
 -- 12 3 2 2
