@@ -4,8 +4,7 @@
 module Day16
   ( preprocess,
     part1,
-    part2,
-    Input
+    part2
   ) where
 
 import Control.Applicative (many)
@@ -138,6 +137,43 @@ part1 (samples, _) = length (filter (>=3) matches)
 -- Part 2 --
 ------------
 
-part2 :: Input -> String
-part2 input = "foo"
+{- Using the samples you collected, work out the number of each opcode and execute the
+   test program (the second section of your puzzle input). -}
+
+operationsByCode :: [Operation]
+operationsByCode = [ eqri, bani, seti, bori,
+                     eqir, banr, borr, muli,
+                     setr, addr, eqrr, addi,
+                     gtir, gtrr, gtri, mulr ]
+
+-- I figured out the above ordering manually using process of elimination with an
+-- Excel table (opcode/operation) and poking around with the following functions
+type Opcode = Int
+
+try :: [Sample] -> Opcode -> Operation -> (Int, Int)
+try samples n op = (sum matches, length filtered)
+  where
+    filtered = filter (opRunsSample n) samples
+    matches  = [ testWith sample op | sample <- filtered ]
+
+    opRunsSample :: Opcode -> Sample -> Bool
+    opRunsSample test (_, (actual, _, _, _), _) = test == actual
+
+-- part2 :: Input -> [(Int, (Int, Int))]
+-- part2 (samples, ins) = filter
+--                          (uncurry (==) . snd)
+--                          [ (i, try samples i eqir) | i <- [0..15] ]
+
+
+{- What value is contained in register 0 after executing the test program? -}
+
+part2 :: Input -> Int
+part2 (_, instructions) = final !! 0
+  where
+    start, final :: Registers
+    start = [0,0,0,0]
+    final = foldl run start instructions
+
+    run :: Registers -> Instruction -> Registers
+    run regs ins@(opcode, _, _, _) = (operationsByCode !! opcode) regs ins
 
