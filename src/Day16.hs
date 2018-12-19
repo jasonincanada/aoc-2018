@@ -129,8 +129,8 @@ part1 :: Input -> Int
 part1 (samples, _) = length (filter (>=3) matches)
   where matches = [ sum $ map (testWith sample) operations | sample <- samples ]
 
-        testWith :: Sample -> Operation -> Int
-        testWith (before, ins, after) op = bool 0 1 (before `op` ins == after)
+testWith :: Sample -> Operation -> Int
+testWith (before, ins, after) op = bool 0 1 (before `op` ins == after)
 
 
 ------------
