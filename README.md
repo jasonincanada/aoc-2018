@@ -5,7 +5,7 @@ There's an r/adventofcode subreddit with really great discussions and other part
 
 Day | Title | Development Notes
 --- | --- | ---
-16 | [Chronal Classification](./src/Day16.hs) | Part 1 done
+16 | [Chronal Classification](./src/Day16.hs) | Register operations
 15 | [Beverage Bandits](./src/Day15.hs) | Solve an ASCII game using a state machine
 14 | Chocolate Charts | *(in progress)*
 13 | Mine Cart Madness | *(in progress)*
