@@ -148,6 +148,7 @@ operationsByCode = [ eqri, bani, seti, bori,
 
 -- I figured out the above ordering manually using process of elimination with an
 -- Excel table (opcode/operation) and poking around with the following functions
+
 type Opcode = Int
 
 try :: [Sample] -> Opcode -> Operation -> (Int, Int)
